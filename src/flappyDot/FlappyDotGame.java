@@ -10,6 +10,10 @@ import org.newdawn.slick.SlickException;
 
 public class FlappyDotGame  extends BasicGame{
 	
+	final static int SCREEN_WIDTH = 800;
+	final static int SCREEN_HEIGHT = 600;
+	final static String ILLUMINATI40 = "res/Illuminati40.png";
+	static Dot dot;
 
 	public FlappyDotGame(String title) {
 		super(title);
@@ -21,7 +25,7 @@ public class FlappyDotGame  extends BasicGame{
 		AppGameContainer appgc;
 		try {
 			appgc = new AppGameContainer(game);
-			appgc.setDisplayMode(800, 600, false);
+			appgc.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
 			appgc.setTargetFrameRate(60);
 			appgc.start();
 		} catch (SlickException e) {
@@ -35,11 +39,12 @@ public class FlappyDotGame  extends BasicGame{
 	public void init(GameContainer arg0) throws SlickException {
 		Color background = new Color(128, 128, 128);
 		arg0.getGraphics().setBackground(background);
+		dot = new Dot(SCREEN_WIDTH/12, SCREEN_HEIGHT/2 - 20, ILLUMINATI40);
 		
 	}
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-		// TODO Auto-generated method stub
+		dot.Render();
 		
 	}
 	@Override
