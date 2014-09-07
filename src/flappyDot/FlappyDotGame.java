@@ -15,6 +15,7 @@ public class FlappyDotGame  extends BasicGame{
 	final static int SCREEN_HEIGHT = 600;
 	final static float GRAVITY = -0.5f;
 	final static String ILLUMINATI40 = "res/Illuminati40.png";
+	private boolean isStarted = false;
 	static Dot dot;
 
 	public FlappyDotGame(String title) {
@@ -40,6 +41,10 @@ public class FlappyDotGame  extends BasicGame{
 	@Override
 	public void keyPressed(int key, char c)
 	{
+		if(!isStarted)
+		{
+			isStarted = true;
+		}
 		if(key == Input.KEY_SPACE)
 		{
 			dot.Jump();
@@ -61,8 +66,10 @@ public class FlappyDotGame  extends BasicGame{
 	}
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		
-		dot.Update(GRAVITY);
+		if(isStarted)
+		{
+			dot.Update(GRAVITY);
+		}
 		
 	}
 
