@@ -6,12 +6,14 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 public class FlappyDotGame  extends BasicGame{
 	
 	final static int SCREEN_WIDTH = 800;
 	final static int SCREEN_HEIGHT = 600;
+	final static float GRAVITY = -0.5f;
 	final static String ILLUMINATI40 = "res/Illuminati40.png";
 	static Dot dot;
 
@@ -34,7 +36,17 @@ public class FlappyDotGame  extends BasicGame{
 		}
 
 	}
-
+	
+	@Override
+	public void keyPressed(int key, char c)
+	{
+		if(key == Input.KEY_SPACE)
+		{
+			dot.Jump();
+			
+		}
+	}
+	
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		Color background = new Color(128, 128, 128);
@@ -49,7 +61,8 @@ public class FlappyDotGame  extends BasicGame{
 	}
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
+		
+		dot.Update(GRAVITY);
 		
 	}
 
