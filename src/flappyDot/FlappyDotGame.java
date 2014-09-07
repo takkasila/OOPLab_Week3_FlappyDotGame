@@ -27,13 +27,16 @@ public class FlappyDotGame  extends BasicGame{
 	public static void main(String[] args) {
 		FlappyDotGame game = new FlappyDotGame("Flappy Dot");
 		AppGameContainer appgc;
-		try {
+		
+		try 
+		{
 			appgc = new AppGameContainer(game);
 			appgc.setDisplayMode(SCREEN_WIDTH, SCREEN_HEIGHT, false);
 			appgc.setTargetFrameRate(60);
 			appgc.start();
-		} catch (SlickException e) {
-			
+		}
+		catch (SlickException e) 
+		{
 			e.printStackTrace();
 		}
 
@@ -72,6 +75,7 @@ public class FlappyDotGame  extends BasicGame{
 		if(isStarted)
 		{
 			dot.Update(GRAVITY);
+			pipePair1.Update();
 		}
 		
 	}

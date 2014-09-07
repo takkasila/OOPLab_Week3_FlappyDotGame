@@ -8,20 +8,28 @@ public class PipePair {
 	final static String PIPE_TOP = "res/pipe-top.png";
 	final static String PIPE_BOTTOM = "res/pipe-bottom.png";
 	final static public float GAP_SIZE = 200;
+	final static float VELOCITY_X = -4;
 	
 	public Image pipe_top;
 	public Image pipe_bottom;
 	
 	public float pos_x, pos_y;
+	public float vel_x;
+	
 	
 	public PipePair(float start_pos_x, float start_pos_y) throws SlickException
 	{
 		pos_x = start_pos_x;
 		pos_y = start_pos_y;
+		vel_x = VELOCITY_X;
 		pipe_top = new Image(PIPE_TOP);
 		pipe_bottom = new Image(PIPE_BOTTOM);
 		
 		
+	}
+	public void Update()
+	{
+		pos_x += vel_x;
 	}
 	public void Render()
 	{
