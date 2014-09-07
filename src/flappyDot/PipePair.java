@@ -1,5 +1,7 @@
 package flappyDot;
 
+import java.util.Random;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -9,6 +11,7 @@ public class PipePair {
 	final static String PIPE_BOTTOM = "res/pipe-bottom.png";
 	final static public float GAP_SIZE = 200;
 	final static float VELOCITY_X = -4;
+	final static float RANDOM_RANGE = 100;
 	
 	public Image pipe_top;
 	public Image pipe_bottom;
@@ -27,9 +30,21 @@ public class PipePair {
 		
 		
 	}
+	
+	public static float GetRandomRange()
+	{
+		Random rand = new Random();
+		return rand.nextFloat()*RANDOM_RANGE - RANDOM_RANGE/2;
+	}
 	public void Update()
 	{
 		pos_x += vel_x;
+		//reset position to right of screen
+		if(pos_x < 0 - pipe_top.getWidth()/2)
+		{
+			pos_x =  FlappyDotGame.SCREEN_WIDTH + pipe_top.getWidth()/2;
+			pos_y = FlappyDotGame.SCREEN_HEIGHT/2 + GetRandomRange();
+		}
 	}
 	public void Render()
 	{

@@ -14,11 +14,14 @@ public class FlappyDotGame  extends BasicGame{
 	final static int SCREEN_WIDTH = 800;
 	final static int SCREEN_HEIGHT = 600;
 	final static float GRAVITY = -0.5f;
+	final static float PIPE_DISTANCE_MULTIPLIER = 300;
+	final static int NUMBER_OF_PIPES = 3;
 	
 	private boolean isStarted = false;
 	
 	static Dot dot;
-	static PipePair pipePair1;
+	static PipePair[] pipePairs = new PipePair[NUMBER_OF_PIPES];
+	
 
 	public FlappyDotGame(String title) {
 		super(title);
@@ -52,7 +55,6 @@ public class FlappyDotGame  extends BasicGame{
 		if(key == Input.KEY_SPACE)
 		{
 			dot.Jump();
-			
 		}
 	}
 	
@@ -61,13 +63,21 @@ public class FlappyDotGame  extends BasicGame{
 		Color background = new Color(128, 128, 128);
 		arg0.getGraphics().setBackground(background);
 		dot = new Dot(SCREEN_WIDTH/12, SCREEN_HEIGHT/2 - 20);
-		pipePair1 = new PipePair(SCREEN_WIDTH/2 , SCREEN_HEIGHT/2);
+		
+		for (int i = 0; i < pipePairs.length; i++) {
+			pipePairs[i] = new PipePair(SCREEN_WIDTH/2 + PIPE_DISTANCE_MULTIPLIER * i
+					, SCREEN_HEIGHT/2 + PipePair.GetRandomRange());
+			
+		}
+		
 		
 	}
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		dot.Render();
-		pipePair1.Render();
+		for (int i = 0; i < pipePairs.length; i++) {
+			pipePairs[i].Render();
+		}
 		
 	}
 	@Override
@@ -75,7 +85,9 @@ public class FlappyDotGame  extends BasicGame{
 		if(isStarted)
 		{
 			dot.Update(GRAVITY);
-			pipePair1.Update();
+			for (int i = 0; i < pipePairs.length; i++) {
+				pipePairs[i].Update();
+			}
 		}
 		
 	}
