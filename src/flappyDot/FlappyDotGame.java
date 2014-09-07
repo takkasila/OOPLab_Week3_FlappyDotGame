@@ -14,13 +14,14 @@ public class FlappyDotGame  extends BasicGame{
 	final static int SCREEN_WIDTH = 800;
 	final static int SCREEN_HEIGHT = 600;
 	final static float GRAVITY = -0.5f;
-	final static String ILLUMINATI40 = "res/Illuminati40.png";
+	
 	private boolean isStarted = false;
+	
 	static Dot dot;
+	static PipePair pipePair1;
 
 	public FlappyDotGame(String title) {
 		super(title);
-		// TODO Auto-generated constructor stub
 	}
 
 	public static void main(String[] args) {
@@ -56,12 +57,14 @@ public class FlappyDotGame  extends BasicGame{
 	public void init(GameContainer arg0) throws SlickException {
 		Color background = new Color(128, 128, 128);
 		arg0.getGraphics().setBackground(background);
-		dot = new Dot(SCREEN_WIDTH/12, SCREEN_HEIGHT/2 - 20, ILLUMINATI40);
+		dot = new Dot(SCREEN_WIDTH/12, SCREEN_HEIGHT/2 - 20);
+		pipePair1 = new PipePair(SCREEN_WIDTH/2 , SCREEN_HEIGHT/2);
 		
 	}
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		dot.Render();
+		pipePair1.Render();
 		
 	}
 	@Override
